@@ -31,6 +31,10 @@ public class MusicService extends Service {
         musicPlayer.pauseMusic();
     }
 
+    public void changeSong(int i){
+        musicPlayer.changeSong(musicPlayer.player, i);
+    }
+
     public void resumeMusic(){
 
         musicPlayer.resumeMusic();

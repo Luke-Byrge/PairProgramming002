@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     TextView music;
     Button play;
+    Button prev;
+    Button next;
 
     MusicService musicService;
     MusicCompletionReceiver musicCompletionReceiver;
@@ -40,6 +42,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         music= (TextView) findViewById(R.id.music);
         play= (Button) findViewById(R.id.play);
+        prev = (Button) findViewById(R.id.prev);
+        next = (Button) findViewById(R.id.next);
+
+
+        next.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                int temp = (musicService.musicPlayer.musicIndex+1) % musicService.musicPlayer.MUSICNAME.length;
+                musicService.changeSong(temp);
+            }
+        });
+
+        prev.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                int temp = (musicService.musicPlayer.musicIndex-1) % musicService.musicPlayer.MUSICNAME.length;
+                musicService.changeSong(temp);
+            }
+        });
+
         play.setOnClickListener(this);
 
         if(savedInstanceState != null){
